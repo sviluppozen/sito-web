@@ -1,0 +1,32 @@
+---
+import Navigation from "../components/global/Navigation.astro";
+import Footer from "../components/global/Footer.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+export interface Props {
+	title: string;
+	description?: string;
+}
+
+const {
+	title,
+	description = "SviluppoZen: Web Development and Custom Web Applications in Florence, Italy.",
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+	<head>
+		<meta charset="UTF-TF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+	</head>
+	<body class="bg-white text-zinc-900">
+		<Navigation />
+		<main><slot /></main>
+		<Footer />
+	</body>
+</html>
