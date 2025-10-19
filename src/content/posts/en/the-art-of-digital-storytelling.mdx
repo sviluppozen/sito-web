@@ -9,6 +9,9 @@ image:
     alt: "A diagram showing the lifecycle of a web application from planning to deployment."
 tags: ["web development", "apps", "ui-ux", "full-stack", "DevOps"]
 ---
+import { Image } from 'astro:assets';
+import diagramImage from '@assets/images/blog/digital-storytelling.jpg';
+
 
 Building a successful web application is more than just writing code. It's a comprehensive process that transforms a great idea into a scalable, user-friendly product. Let's walk through the essential stages of the web app lifecycle.
 
@@ -39,6 +42,8 @@ Rigorous testing is essential to deliver a reliable product.
 -   **Functional Testing:** Ensuring every feature works as expected.
 -   **Performance Testing:** Checking for speed, scalability, and stability under load.
 -   **Security Audits:** Identifying and patching potential vulnerabilities.
+
+<Image src={diagramImage} alt="A diagram showing the lifecycle of a web application from planning to deployment." class="rounded-lg shadow-md" />
 
 ## 5. Deployment and Maintenance
 
