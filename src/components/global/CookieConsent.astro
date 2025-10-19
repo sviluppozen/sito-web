@@ -1,0 +1,57 @@
+---
+import { useTranslations } from "@i18n/utils";
+
+const lang = Astro.currentLocale === "it" ? "it" : "en";
+const t = useTranslations(lang);
+---
+
+<div
+	id="cookie-consent-banner"
+	class="fixed bottom-0 left-0 z-50 hidden w-full bg-black/90 p-4 text-white backdrop-blur-sm"
+>
+	<div
+		class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row"
+	>
+		<p class="text-center text-sm sm:text-left">
+			{t("cookies.bannerText")}
+			<a href="/cookies" class="underline hover:text-[#E1306C]"
+				>{t("cookies.policy.title")}</a
+			>.
+		</p>
+		<div class="flex flex-shrink-0 items-center gap-4">
+			<button
+				id="decline-cookies"
+				class="rounded-full bg-transparent px-6 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+			>
+				{t("cookies.decline")}
+			</button>
+			<button
+				id="accept-cookies"
+				class="rounded-full bg-[#E1306C] px-6 py-2 text-sm font-semibold text-white transition hover:opacity-80"
+			>
+				{t("cookies.accept")}
+			</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	const banner = document.getElementById("cookie-consent-banner");
+	const acceptBtn = document.getElementById("accept-cookies");
+	const declineBtn = document.getElementById("decline-cookies");
+
+	if (!localStorage.getItem("cookie_consent")) {
+		banner.style.display = "block";
+	}
+
+	acceptBtn.addEventListener("click", () => {
+		localStorage.setItem("cookie_consent", "true");
+		banner.style.display = "none";
+		window.dispatchEvent(new CustomEvent("consent-given"));
+	});
+
+	declineBtn.addEventListener("click", () => {
+		localStorage.setItem("cookie_consent", "false");
+		banner.style.display = "none";
+	});
+</script>

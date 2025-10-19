@@ -1,0 +1,82 @@
+---
+import Newsletter from "@components/blog/Newsletter.astro";
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="section flex-col gap-y-10 py-10">
+	<!-- Main Footer Content -->
+	<div class="col-span-12 grid grid-cols-1 gap-10 text-lg lg:grid-cols-12 lg:gap-6">
+		<!-- Newsletter -->
+		<div class="lg:col-span-4">
+			<div class="text-3xl">{t("footer.newsletter")}</div>
+			<div class="text-4xl font-semibold">{t("footer.newsletter2")}</div>
+			<Newsletter />
+		</div>
+
+		<!-- Site Links -->
+		<div class="lg:col-span-3 lg:col-start-6">
+			<h3 class="mb-4 text-xl font-semibold">Navigazione</h3>
+			<div class="flex flex-col gap-2">
+				<a href={translatePath("/")} class="hover:text-[#E1306C]">Home</a>
+				<a href={translatePath("/blog/")} class="hover:text-[#E1306C]">Blog</a>
+				<a href={translatePath("/tags/")} class="hover:text-[#E1306C]">Tags</a>
+				<a href={translatePath("/contact/")} class="hover:text-[#E1306C]">{t("contacts")}</a>
+			</div>
+		</div>
+
+		<!-- Social & Legal Links -->
+		<div class="lg:col-span-3">
+			<h3 class="mb-4 text-xl font-semibold">Social & Info</h3>
+			<div class="flex flex-col gap-2">
+				<a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#E1306C]">Linkedin</a>
+				<a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#E1306C]">GitHub</a>
+				<a href={translatePath("/privacy/")} class="hover:text-[#E1306C]">{t("privacy.title")}</a>
+				<a href={translatePath("/cookies/")} class="hover:text-[#E1306C]">{t("cookies.policy.title")}</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bottom Bar -->
+	<div class="col-span-12 mt-10 flex w-full items-center justify-between border-t border-black/20 pt-4 text-sm">
+		<div>© {currentYear} SviluppoZen di Giuseppe Rossi</div>
+		<button
+			id="go-top-button"
+			aria-label="Go to Top"
+			class="transition-colors duration-300 hover:text-[#E1306C]"
+			data-cursor-hover
+			data-cursor-parallax
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+				<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="12" cy="12" r="9"></circle>
+					<path d="m15 12l-3-3m0 0l-3 3m3-3v6"></path>
+				</g>
+			</svg>
+		</button>
+	</div>
+</footer>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+	gsap.registerPlugin(ScrollToPlugin);
+
+	function init() {
+		var goTopButton = document.getElementById("go-top-button");
+
+		if (!goTopButton) return;
+
+		goTopButton.addEventListener("click", function () {
+			gsap.to(window, { duration: 0.5, scrollTo: 0 });
+		});
+	}
+
+	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
+	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+</script>
