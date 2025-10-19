@@ -86,15 +86,11 @@ const { pathname } = Astro.url;
 										<a
 											href={translatePath(page.url)}
 											class={`inline-block cursor-pointer px-1 py-[0.33rem] ${
-<<<<<<< HEAD
-												(page.url === "/" ? path === "/" : path.startsWith(page.url)) ? "active" : ""
-=======
 												page.url === pathname ||
 												page.url === pathname.replace(/^\/it|\/$/, "") ||
 												(page.url === "/blog" && (pathname.startsWith("/blog") || pathname.startsWith("/it/blog")))
 													? "active"
 													: ""
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 											}`}>
 											<span class="menu-item-container inline-block">
 												<span class="menu-item px-4 py-1 font-semibold uppercase tracking-wide text-zinc-400 hover:text-white focus:text-white focus:shadow-none focus:outline-none">
@@ -147,15 +143,9 @@ const { pathname } = Astro.url;
 		top: 0.36rem;
 		font-size: 12px;
 		line-height: 23px;
-<<<<<<< HEAD
-		color: #000;
-		opacity: 0;
-		text-shadow: 4px 0 #000;
-=======
 		color: #8e8e8e;
 		opacity: 0;
 		text-shadow: 4px 0 #8e8e8e;
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 		transition: all 0.5s ease;
 	}
 	.collapsed .resizable:before {
@@ -228,18 +218,10 @@ const { pathname } = Astro.url;
 				{
 					x: () => {
 						const pathName = window.location.pathname;
-<<<<<<< HEAD
-						const pathWithoutLang = pathName.replace(/^\/en\//, "/");
-
-						if (pathWithoutLang === "/") {
-							return "9.5rem";
-						} else if (pathWithoutLang.startsWith("/blog")) {
-=======
 
 						if (pathName === "/" || pathName === "/it/") {
 							return "9.5rem";
 						} else if (pathName.startsWith("/blog") || pathName.startsWith("/it/blog")) {
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 							return "3.5rem";
 						}
 

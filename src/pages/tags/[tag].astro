@@ -5,26 +5,9 @@ import Tag from "@components/blog/Tag.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-<<<<<<< HEAD
-	const allPosts = await getCollection("posts", ({ slug }) => !slug.startsWith('en/'));
-	const uniqueTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
-	return uniqueTags.map((tag) => ({
-		params: { tag },
-	}));
-}
-
-const { tag } = Astro.params;
-const allPosts = await getCollection("posts", ({ slug }) => !slug.startsWith('en/'));
-const posts = allPosts.filter((post) => post.data.tags.includes(tag));
-
-const seo: AstroSeoProps = {
-	title: `${tag} | SviluppoZen`,
-	description: `Explore articles and insights on '${tag}' at SviluppoZen. Dive into a wealth of knowledge covering the latest trends and tips in web design and SEO.`,
-	canonical: `https://sviluppozen.it/tags/${tag}/`,
-=======
 	const allPosts = (await getCollection("posts")).filter((post) => {
 		const [postLang, ...slug] = post.slug.split("/");
-		return postLang === "en";
+		return postLang === "it";
 	});
 
 	const uniqueTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
@@ -44,15 +27,13 @@ const seo: AstroSeoProps = {
 		};
 	});
 }
-
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
 const seo: AstroSeoProps = {
-	title: `${tag} | Majestico Studio`,
-	description: `Explore articles and insights on '${tag}' at Majestico Studio. Dive into a wealth of knowledge covering the latest trends and tips in web design and SEO.`,
-	canonical: `https://mintaka.co/tags/${tag}/`,
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+	title: `${tag} | SviluppoZen`,
+	description: `Explore articles and insights on '${tag}' at SviluppoZen. Dive into a wealth of knowledge covering the latest trends and tips in web design and SEO.`,
+	canonical: `https://sviluppozen.it/tags/${tag}/`,
 };
 ---
 

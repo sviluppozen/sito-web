@@ -3,11 +3,7 @@ export const languages = {
 	it: "Italiano",
 };
 
-<<<<<<< HEAD
 export const defaultLang = "it";
-=======
-export const defaultLang = "en";
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 
 export const ui = {
 	en: {
@@ -93,12 +89,14 @@ export const ui = {
 		"footer.newsletter": "Subscribe to",
 		"footer.newsletter2": "our newsletter",
 		"footer.yourmail": "Your email",
-<<<<<<< HEAD
+		"footer.navigation": "Navigation",
+		"footer.home": "Home",
+		"footer.blog": "Blog",
 		"footer.tags": "Tags",
 		"footer.social": "Social & Info",
-		"footer.copyright": "© {{year}} SviluppoZen by Giuseppe Rossi",
-=======
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+		"footer.copyright": "© {currentYear} SviluppoZen by Giuseppe (fugato)",
+		"newsletter.submit_aria_label": "Send newsletter form button",
+		"cta.newsletter.title": "Subscribe to our newsletter!",
 	},
 	it: {
 		or: "o",
@@ -183,15 +181,16 @@ export const ui = {
 		"footer.newsletter": "Iscriviti alla",
 		"footer.newsletter2": "newsletter",
 		"footer.yourmail": "La tua email",
-<<<<<<< HEAD
-		"footer.nav": "Navigazione",
+		"footer.navigation": "Navigazione",
 		"footer.home": "Home",
 		"footer.blog": "Blog",
 		"footer.tags": "Tags",
 		"footer.social": "Social & Info",
-		"footer.copyright": "© {{year}} SviluppoZen di Giuseppe Rossi",
-=======
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+		"footer.copyright": "© {currentYear} SviluppoZen di Giuseppe (fugato)",
+		"newsletter.submit_aria_label": "Invia il modulo della newsletter",
+		"cta.newsletter.title": "Iscriviti alla nostra newsletter!",
+		"seo.title.home": "SviluppoZen: Agenzia Sviluppo Siti Web e App a Firenze",
+		"seo.description.home": "Agenzia di sviluppo web a Firenze specializzata in siti web custom, applicazioni web e hosting gestito. Soluzioni performanti per la crescita del tuo business.",
 	},
 } as const;
 

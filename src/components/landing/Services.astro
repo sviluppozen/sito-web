@@ -42,11 +42,7 @@ const points = [
 ];
 ---
 
-<<<<<<< HEAD
-<section id="services" class:list={["section bg-black services-section relative", className]}>
-=======
-<section id="services" class:list={["section home-dark-section services-section relative", className]}>
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+<section id="services" class:list={["section bg-black text-white services-section relative", className]}>
 	<div class="wrapper col-span-12 h-screen w-full">
 		<h2 class="sr-only">{t("services")}</h2>
 		<div class="indicators absolute left-0 top-0 mt-[10vh] hidden h-[80vh] w-1 flex-col justify-between gap-2">
@@ -59,12 +55,8 @@ const points = [
 						<Fragment set:html={image} class="" />
 					</div>
 					<article class="flex flex-col gap-14">
-						<h3 class="faq font-display text-4xl uppercase md:text-5xl lg:text-6xl text-[#E1306C]">{title}</h3>
-<<<<<<< HEAD
-						<p class="max-w-2xl text-lg text-white" set:html={content} />
-=======
-						<p class="max-w-2xl text-lg" set:html={content} />
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+						<h3 class="faq font-bold text-4xl uppercase md:text-5xl lg:text-6xl text-[#E1306C]">{title}</h3>
+						<p class="max-w-2xl text-xl text-zinc-200" set:html={content} />
 					</article>
 				</div>
 			))

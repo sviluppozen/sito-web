@@ -31,11 +31,7 @@ const faqs = [
 ];
 ---
 
-<<<<<<< HEAD
 <section id="faq" class:list={["section faq-section relative bg-black text-white", className]}>
-=======
-<section id="faq" class:list={["section faq-section relative bg-zinc-900 text-white", className]}>
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 	<div class="wrapper col-span-12 flex min-h-screen w-full flex-col py-32 md:flex-row">
 		<div class="title-container top-0 pt-10 md:sticky md:h-[30rem]">
 			<h2 class="font-display text-5xl md:text-6xl lg:text-8xl">FAQ</h2>
@@ -58,7 +54,7 @@ const faqs = [
 
 			{
 				faqs.map(({ question, answer }) => (
-					<details class="relative min-h-1 grow rounded-md border-zinc-800 bg-zinc-800 text-lg transition-all">
+					<details class="relative min-h-1 grow rounded-md border-black bg-white/5 backdrop-blur-lg text-lg transition-all">
 						<summary class="gap-4 px-11 py-11">
 							{question}
 							<svg class="control-icon control-icon-expand" width="24" height="24" role="presentation">
@@ -68,7 +64,7 @@ const faqs = [
 								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" />
 							</svg>
 						</summary>
-						<p class="px-11 pb-11 font-light text-zinc-200">{answer}</p>
+						<p class="px-11 pb-11 font-light text-zinc-400">{answer}</p>
 					</details>
 				))
 			}
@@ -105,7 +101,7 @@ const faqs = [
 				</g>
 			</svg>
 		</div>
-		<div class="faq-contact-us-button squircle-bg-white rounded-lg bg-zinc-200 opacity-0 sm:ml-44" data-cursor-hover data-cursor-parallax>
+		<div class="faq-contact-us-button squircle-bg-white rounded-lg bg-white opacity-0 sm:ml-44" data-cursor-hover data-cursor-parallax>
 			<a
 				class="flex h-10 w-full max-w-52 flex-1 items-center justify-center px-4 py-2 text-2xl text-zinc-900 transition-all hover:text-black sm:w-auto md:font-bold lg:h-10"
 				href={translatePath("/contact/")}>
@@ -233,51 +229,6 @@ const faqs = [
 				},
 				">-=1.5",
 			);
-<<<<<<< HEAD
-
-		// FAQ Accordion Animation
-		const detailsElements = gsap.utils.toArray<HTMLElement>(".faq-list details");
-		const summaries = gsap.utils.toArray<HTMLElement>(".faq-list summary");
-		const contents = gsap.utils.toArray<HTMLElement>(".faq-list p");
-
-		// Set initial state
-		summaries.forEach((summary) => {
-			summary.style.position = "relative"; // For positioning pseudo-elements if needed
-		});
-		contents.forEach((content) => {
-			gsap.set(content, { height: 0, overflow: "hidden" });
-		});
-
-		summaries.forEach((summary, i) => {
-			summary.addEventListener("click", (e) => {
-				e.preventDefault();
-
-				const detail = detailsElements[i];
-				const content = contents[i];
-				const isOpen = detail.hasAttribute("open");
-
-				if (isOpen) {
-					gsap.to(content, {
-						height: 0,
-						duration: 0.4,
-						ease: "power1.inOut",
-						onComplete: () => detail.removeAttribute("open"),
-					});
-				} else {
-					// Close others
-					detailsElements.forEach((otherDetail, otherIndex) => {
-						if (i !== otherIndex && otherDetail.hasAttribute("open")) {
-							gsap.to(contents[otherIndex], { height: 0, duration: 0.4, ease: "power1.inOut" });
-							otherDetail.removeAttribute("open");
-						}
-					});
-					detail.setAttribute("open", "");
-					gsap.fromTo(content, { height: 0 }, { height: "auto", duration: 0.4, ease: "power1.inOut" });
-				}
-			});
-		});
-=======
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 	}
 
 	document.removeEventListener("DOMContentLoaded", init); // astro:page-load

@@ -12,26 +12,6 @@ const translatePath = useTranslatedPath(lang);
 const { class: className } = Astro.props;
 
 const allProjects = (await getCollection("projects"))
-<<<<<<< HEAD
-	.filter((post) => {
-		const isEnglish = post.slug.startsWith("en/");
-		if (lang === "en") {
-			return isEnglish;
-		} else {
-			return !isEnglish;
-		}
-	})
-	.map((post) => {
-		if (post.slug.startsWith("en/")) {
-			return {
-				...post,
-				slug: post.slug.slice(3),
-			};
-		}
-		return post;
-	})
-	.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
-=======
 	.filter((prj) => {
 		const [postLang, ...slug] = prj.slug.split("/");
 		return postLang === lang;
@@ -45,7 +25,6 @@ const allProjects = (await getCollection("projects"))
 		};
 	})
 	.sort((a, b) => Number(b.data.pubDate) - Number(a.data.pubDate));
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 ---
 
 <section id="projects" class:list={["section work-preview-section home-dark-section py-12", className]}>
@@ -57,11 +36,7 @@ const allProjects = (await getCollection("projects"))
 					<WokCard
 						image={project.data.image.source}
 						project={project.data.title}
-<<<<<<< HEAD
-						link={translatePath(`/work/${project.slug}`)}
-=======
 						link={`/work/${project.slug}`}
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 						class={
 							index % 2 === 0
 								? `md:col-start-1 md:row-start-${Math.floor(index / 2) * 2 + 1} md:row-span-2`

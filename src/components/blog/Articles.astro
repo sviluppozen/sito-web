@@ -10,25 +10,6 @@ const translatePath = useTranslatedPath(lang);
 
 const allPosts = (await getCollection("posts"))
 	.filter((post) => {
-<<<<<<< HEAD
-		const isEnglish = post.slug.startsWith("en/");
-		if (lang === "en") {
-			return isEnglish;
-		} else {
-			return !isEnglish;
-		}
-	})
-	.map((post) => {
-		if (post.slug.startsWith("en/")) {
-			return {
-				...post,
-				slug: post.slug.slice(3),
-			};
-		}
-		return post;
-	})
-	.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
-=======
 		const [postLang, ...slug] = post.slug.split("/");
 		return postLang === lang;
 	})
@@ -41,7 +22,6 @@ const allPosts = (await getCollection("posts"))
 		};
 	})
 	.sort((a, b) => Number(b.data.pubDate) - Number(a.data.pubDate));
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 ---
 
 <section>
@@ -59,11 +39,7 @@ const allPosts = (await getCollection("posts"))
 		{
 			allPosts && allPosts[0] && (
 				<Entry
-<<<<<<< HEAD
-					url={translatePath("/blog/" + allPosts[0].slug)}
-=======
 					url={"/blog/" + allPosts[0].slug}
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 					title={allPosts[0].data.title}
 					description={allPosts[0].data.description}
 					alt={allPosts[0].data.title}
@@ -81,11 +57,7 @@ const allPosts = (await getCollection("posts"))
 					.slice(1)
 					.map((post) => (
 						<Entry
-<<<<<<< HEAD
-							url={translatePath("/blog/" + post.slug)}
-=======
 							url={"/blog/" + post.slug}
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 							title={post.data.title}
 							description={post.data.description}
 							alt={post.data.title}

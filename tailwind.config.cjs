@@ -74,9 +74,9 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				display: ["Midnight", ...defaultTheme.fontFamily.sans],
-				sans: ["Inter", ...defaultTheme.fontFamily.sans],
-				mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
+				display: ["Raleway", ...defaultTheme.fontFamily.sans],
+				sans: ["Raleway", ...defaultTheme.fontFamily.sans],
+				mono: ["Raleway", ...defaultTheme.fontFamily.mono],
 			},
 		},
 	},

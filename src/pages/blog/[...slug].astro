@@ -1,95 +1,54 @@
 ---
-<<<<<<< HEAD
-import { getCollection, getEntry } from "astro:content";
-=======
 import { getCollection } from "astro:content";
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 import type { AstroSeoProps } from "@astrolib/seo";
-import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
+import MarkdownPostLayout from "@layouts/MarkdownPostLayout.astro";
+import { useTranslatedPath } from "@i18n/utils";
 
 export async function getStaticPaths() {
-<<<<<<< HEAD
-	const blogEntries = await getCollection("posts", ({ slug }) => !slug.startsWith('en/'));
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-	}));
-}
-
-const { slug } = Astro.params;
-const entry = await getEntry('posts', slug);
-
-if (!entry) {
-	return new Response(null, { status: 404 });
-}
-
-=======
 	const blogEntries = await getCollection("posts");
-
 	return blogEntries
-		.map((entry) => {
-			const [lang, ...slug] = entry.slug.split("/");
-			return { params: { lang, slug: slug.join("/") || undefined }, props: entry };
-		})
-		.filter((entry) => entry.params.lang === "en");
+		.filter((entry) => entry.slug.startsWith("it/"))
+		.map((entry) => ({
+			params: { slug: entry.slug.substring(3) }, // Remove 'it/' prefix
+			props: { entry, lang: "it" },
+		}));
 }
 
-const entry = Astro.props;
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+const { entry, lang } = Astro.props;
 const { Content } = await entry.render();
+const translatePath = useTranslatedPath(lang);
 
 const seo: AstroSeoProps = {
 	title: entry.data.title,
 	description: entry.data.description,
-<<<<<<< HEAD
-	canonical: `https://sviluppozen.it/blog/${slug}/`,
-	openGraph: {
-		url: `https://sviluppozen.it/blog/${slug}/`,
-		title: entry.data.title,
-		description: entry.data.description,
-		images: [
-			{
-				url: new URL(entry.data.image.source, Astro.site).toString(),
-				width: 1200,
-				height: 630,
-				alt: entry.data.image.alt,
-				type: "image/jpeg",
-			},
-		],
-		site_name: "SviluppoZen",
-	},
-	twitter: {
-		handle: "@giuserossi",
-		site: "@sviluppozen",
-=======
-	canonical: `https://mintaka.co/blog/${entry.slug}/`,
+	canonical: `https://sviluppozen.it${translatePath(`/blog/${entry.slug.substring(3)}`)}`,
 	openGraph: {
 		url: entry.slug,
 		title: entry.data.title,
 		description: "{frontmatter.description}",
 		images: [
 			{
-				url: "https://mintaka.co/opengraph/social-og.jpg",
+				url: "https://sviluppozen.it/opengraph/social-og.jpg",
 				width: 1200,
 				height: 630,
 				alt: "Social open graph",
 				type: "image/jpeg",
 			},
 			{
-				url: "https://mintaka.co/opengraph/twitter-og.jpg",
+				url: "https://sviluppozen.it/opengraph/twitter-og.jpg",
 				width: 4096,
 				height: 4096,
 				alt: "Twitter open graph",
 				type: "image/jpeg",
 			},
-			{ url: "https://mintaka.co/opengraph/social-og.jpg" },
-			{ url: "https://mintaka.co/opengraph/twitter-og.jpg" },
+			{ url: "https://sviluppozen.it/opengraph/social-og.jpg" },
+			{ url: "https://sviluppozen.it/opengraph/twitter-og.jpg" },
 		],
-		site_name: "YourSitesName",
+		site_name: "SviluppoZen",
 	},
 	twitter: {
-		handle: "@TwitterHandle",
-		site: "@site",
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
+		handle: "@sviluppozen",
+		site: "@sviluppozen",
 		cardType: "summary_large_image",
 	},
 };

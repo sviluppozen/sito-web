@@ -3,18 +3,6 @@ import { type CollectionEntry } from "astro:content";
 
 import EntriesOne from "@/components/blog/Entry.astro";
 import Title from "@components/global/Title.astro";
-<<<<<<< HEAD
-import { getLangFromUrl, useTranslatedPath } from "@/i18n/utils";
-
-interface Props {
-	tag: string;
-	posts: CollectionEntry<"posts">[];
-}
-
-const { tag, posts } = Astro.props as Props;
-const lang = getLangFromUrl(Astro.url);
-const translatePath = useTranslatedPath(lang);
-=======
 
 interface Props {
 	tag: string;
@@ -22,7 +10,6 @@ interface Props {
 }
 
 const { tag, posts } = Astro.props as Props;
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 ---
 
 <section>
@@ -34,11 +21,7 @@ const { tag, posts } = Astro.props as Props;
 			{
 				posts.map((post) => (
 					<EntriesOne
-<<<<<<< HEAD
-						url={translatePath("/blog/" + post.slug)}
-=======
 						url={"/blog/" + post.slug}
->>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 						title={post.data.title}
 						description={post.data.description}
 						alt={post.data.title}

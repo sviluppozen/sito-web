@@ -13,18 +13,18 @@
 }
 
 @font-face {
-	font-family: "Midnight";
-	src: url("/fonts/Midnight.woff2") format("woff2");
-	font-weight: normal;
+	font-family: "Raleway";
+	src: url("/fonts/Raleway-VariableFont_wght.ttf") format("truetype-variations");
+	font-weight: 100 900;
 	font-style: normal;
 	font-display: swap;
 }
 
 :root {
-	font-family: "Inter var", sans-serif;
+	font-family: "Raleway", sans-serif;
 	/* Fallback for browsers that don't support variable fonts */
 	@supports not (font-variation-settings: normal) {
-		font-family: "Inter", sans-serif;
+		font-family: "Raleway", sans-serif;
 	}
 	
 	--astro-code-color-text: #000000;

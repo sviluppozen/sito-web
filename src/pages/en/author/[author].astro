@@ -1,27 +1,28 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import type { AstroSeoProps } from "@astrolib/seo";
-import Author from "@/components/blog/Author.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Author from "@components/blog/Author.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { useTranslatedPath } from "@i18n/utils";
 
 export async function getStaticPaths() {
-	const authors = await getCollection("authors", ({ slug }) => slug.startsWith('en/'));
-	return authors.map((author) => ({
-		params: { author: author.slug.slice(3) },
-	}));
+	const authors = await getCollection("authors");
+	return authors
+		.filter((entry) => entry.slug.startsWith("en/"))
+		.map((entry) => ({
+			params: { author: entry.slug.substring(3) }, // Remove 'en/' prefix
+			props: { entry, lang: "en" },
+		}));
 }
 
-const { author: authorSlug } = Astro.params;
-const author = await getEntry('authors', `en/${authorSlug}`);
-
-if (!author) {
-	return new Response(null, { status: 404 });
-}
+const { entry, lang } = Astro.props;
+const author = entry;
+const translatePath = useTranslatedPath(lang);
 
 const seo: AstroSeoProps = {
 	title: author.data.name,
 	description: author.data.description,
-	canonical: `https://sviluppozen.it/en/author/${authorSlug}/`,
+	canonical: `https://sviluppozen.it${translatePath(`/author/${author.slug.substring(3)}`)}`,
 };
 ---
 
