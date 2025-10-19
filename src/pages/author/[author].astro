@@ -1,0 +1,36 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import type { AstroSeoProps } from "@astrolib/seo";
+import Author from "@components/blog/Author.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+	const authors = await getCollection("authors", ({ slug }) => !slug.startsWith('en/'));
+	return authors.map((author) => ({
+		params: { author: author.slug },
+	}));
+}
+
+const { author: authorSlug } = Astro.params;
+const author = await getEntry('authors', authorSlug);
+
+if (!author) {
+	return new Response(null, { status: 404 });
+}
+
+const seo: AstroSeoProps = {
+	title: author.data.name,
+	description: author.data.description,
+	canonical: `https://sviluppozen.it/author/${authorSlug}/`,
+};
+
+const seo: AstroSeoProps = {
+	title: author.data.name,
+	description: author.data.description,
+	canonical: `https://mintaka.co/author/${author.slug}/`,
+};
+---
+
+<BaseLayout seo={seo}>
+	<Author author={author} />
+</BaseLayout>

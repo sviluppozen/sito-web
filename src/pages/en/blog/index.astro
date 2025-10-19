@@ -1,0 +1,46 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { AstroSeoProps } from "@astrolib/seo";
+import Articles from "@/components/blog/Articles.astro";
+
+const seo: AstroSeoProps = {
+	title: "SviluppoZen Blog: Insights and Updates in Web Design, Web dev and SEO",
+	description:
+		"Explore the SviluppoZen Blog for the latest trends, tips, and insights in web design, web dev and SEO. Stay updated with our innovative digital solutions.",
+	canonical: "https://sviluppozen.it/en/blog/",
+	openGraph: {
+		url: "https://sviluppozen.it/en/blog",
+		title: "SviluppoZen Blog: Insights and Updates in Web Design, Web dev and SEO",
+		description:
+			"Stay informed with the latest in web design and SEO on the SviluppoZen Blog. Expert advice, tips, and industry insights await you.",
+		images: [
+			{
+				url: "https://sviluppozen.it/opengraph/social-og.jpg",
+				width: 1200,
+				height: 630,
+				alt: "Social open graph image of SviluppoZen Blog",
+				type: "image/jpeg",
+			},
+			{
+				url: "https://sviluppozen.it/opengraph/twitter-og.jpg",
+				width: 4096,
+				height: 4096,
+				alt: "Twitter open graph image of SviluppoZen Blog",
+				type: "image/jpeg",
+			},
+			{ url: "https://sviluppozen.it/opengraph/social-og.jpg" },
+			{ url: "https://sviluppozen.it/opengraph/twitter-og.jpg" },
+		],
+		site_name: "SviluppoZen",
+	},
+	twitter: {
+		handle: "@giuserossi",
+		site: "@sviluppozen",
+		cardType: "summary_large_image",
+	},
+};
+---
+
+<BaseLayout seo={seo}>
+	<Articles />
+</BaseLayout>

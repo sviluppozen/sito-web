@@ -1,0 +1,51 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import type { AstroSeoProps } from "@astrolib/seo";
+import MarkdownPostLayout from "@/layouts/MarkdownPostLayout.astro";
+
+export async function getStaticPaths() {
+	const projectsEntries = await getCollection("projects", ({ slug }) => slug.startsWith('en/'));
+	return projectsEntries.map((entry) => ({
+		params: { slug: entry.slug.slice(3) },
+	}));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry('projects', `en/${slug}`);
+
+if (!entry) {
+	return new Response(null, { status: 404 });
+}
+
+const { Content } = await entry.render();
+
+const seo: AstroSeoProps = {
+	title: `Project ${entry.data.title} - SviluppoZen`,
+	description: entry.data.description,
+	canonical: `https://sviluppozen.it/en/work/${slug}/`,
+	openGraph: {
+		url: `https://sviluppozen.it/en/work/${slug}/`,
+		title: entry.data.title,
+		description: entry.data.description,
+		images: [
+			{
+				url: new URL(entry.data.image.source, Astro.site).toString(),
+				width: 1200,
+				height: 630,
+				alt: entry.data.image.alt,
+				type: "image/jpeg",
+			},
+		],
+		site_name: "SviluppoZen",
+	},
+	twitter: {
+		handle: "@giuserossi",
+		site: "@sviluppozen",
+		cardType: "summary_large_image",
+	},
+};
+---
+
+<MarkdownPostLayout frontmatter={entry.data} body={entry.body} seo={seo}>
+	<Content />
+</MarkdownPostLayout>

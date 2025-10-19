@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.nav-link {
+		@apply rounded-full px-4 py-2 transition-colors duration-300;
+	}
+	.nav-link:hover {
+		background-color: #e1306c;
+		@apply text-white;
+	}
+}
+
+@font-face {
+	font-family: "Midnight";
+	src: url("/fonts/Midnight.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	font-family: "Inter var", sans-serif;
+	/* Fallback for browsers that don't support variable fonts */
+	@supports not (font-variation-settings: normal) {
+		font-family: "Inter", sans-serif;
+	}
+	
+	--astro-code-color-text: #000000;
+	--astro-code-color-background: #ffffff;
+	--astro-code-token-constant: #000000;
+	--astro-code-token-string: #E1306C;
+	--astro-code-token-comment: #6b7280; /* Using a gray for comments */
+	--astro-code-token-keyword: #E1306C;
+	--astro-code-token-parameter: #000000;
+	--astro-code-token-function: #000000;
+	--astro-code-token-string-expression: #E1306C;
+	--astro-code-token-punctuation: #000000;
+	--astro-code-token-link: #E1306C;
+	--grid-gap: 4vw;
+	--base-padding-x: max(6vw, 60px);
+	--base-padding-y: clamp(30px, 4vw, 50px);
+}
+
+@media (max-width: 812px) {
+	:root {
+		--base-padding-x: 25px;
+		--base-padding-y: 25px;
+	}
+}
+
+html {
+	scrollbar-gutter: stable;
+	@apply overflow-x-hidden bg-white text-black;
+}
+
+/* Custom scrollbar */
+
+::-webkit-scrollbar-track {
+	border: none;
+	background-color: transparent;
+}
+::-webkit-scrollbar {
+	width: 4px;
+	background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #000000;
+	border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #000;
+}
+.dark ::-webkit-scrollbar-thumb {
+	background-color: #e8e1e1;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+	background-color: #ffffff;
+}
+
+/* Selection */
+
+::-moz-selection {
+	color: white;
+	background: #E1306C;
+}
+::selection {
+	color: white;
+	background: #E1306C;
+}
+.dark ::-moz-selection {
+	color: #E1306C;
+	background: white;
+}
+.dark ::selection {
+	color: #E1306C;
+	background: white;
+}
+
+.select-none {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.prose-styles {
+	@apply prose mx-auto max-w-3xl text-black prose-headings:font-bold prose-headings:tracking-tighter prose-headings:text-black prose-a:text-[#E1306C] hover:prose-a:text-black prose-blockquote:border-l-black prose-blockquote:text-black prose-code:text-[#E1306C] prose-pre:rounded-lg prose-li:marker:text-black;
+}
+
+.section {
+	position: relative;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: var(--grid-gap);
+	padding: var(--base-padding-y) var(--base-padding-x);
+}

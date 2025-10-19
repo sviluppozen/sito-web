@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { useTranslations } from "@i18n/utils";
+
+const t = useTranslations("en");
+---
+
+<BaseLayout
+	title={t("cookies.policy.title")}
+	description={t("cookies.policy.description")}
+>
+	<div class="section">
+		<div class="prose-styles col-span-12">
+			<h1>{t("cookies.policy.title")}</h1>
+			<p><em>{t("cookies.policy.lastUpdated")}</em></p>
+
+			<h2>{t("cookies.policy.introduction.title")}</h2>
+			<p>{t("cookies.policy.introduction.content")}</p>
+
+			<h2>{t("cookies.policy.technical.title")}</h2>
+			<p set:html={t("cookies.policy.technical.content")} />
+
+			<h2>{t("cookies.policy.analytics.title")}</h2>
+			<p set:html={t("cookies.policy.analytics.content")} />
+
+			<h2>{t("cookies.policy.manage.title")}</h2>
+			<p>{t("cookies.policy.manage.content")}</p>
+		</div>
+	</div>
+</BaseLayout>
