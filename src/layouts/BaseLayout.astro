@@ -23,8 +23,6 @@ const lang = getLangFromUrl(Astro.url);
 
 const shareImage = new URL("/images/meta/sviluppozen_share.png", Astro.site).toString();
 
-const GA_TRACKING_ID = "YOUR_G-XXXXXXXXXX_ID"; // <-- IMPORTANT: Replace with your Google Analytics ID
-
 const defaultSeo: AstroSeoProps = {
 	title: ui[lang]["seo.title.default"] || "SviluppoZen: Sviluppo Siti Web e App a Firenze",
 	description: ui[lang]["seo.description.default"] || "Agenzia di sviluppo web a Firenze specializzata in siti web custom, applicazioni web e hosting gestito. Soluzioni performanti per la crescita del tuo business.",
@@ -52,8 +50,8 @@ const defaultSeo: AstroSeoProps = {
 		site_name: "SviluppoZen",
 	},
 	twitter: {
-		handle: "@giuserossi", // Replace with your actual Twitter handle
-		site: "@giuserossi", // Replace with your actual Twitter handle
+		handle: "", // Replace with your actual Twitter handle
+		site: "", // Replace with your actual Twitter handle
 		cardType: "summary_large_image",
 	},
 	additionalMetaTags: [
@@ -79,30 +77,23 @@ function cursorFollowerActive() {
 	<head>
 		<BaseHead />
 		<AstroSeo {...seo} />{
-			import.meta.env.PROD && (
-				<script define:vars={{ GA_TRACKING_ID }}>
-					function loadGa() {
-						const script = document.createElement("script");
-						script.async = true;
-						script.src = `https://www.googletagmanager.com/gtag/js?id=${GTM-NSKM8LKT}`;
-						document.head.appendChild(script);
-
-						window.dataLayer = window.dataLayer || [];
-						function gtag() {
-							dataLayer.push(arguments);
-						}
-						gtag("js", new Date());
-						gtag("config", GA_TRACKING_ID);
-						console.log("Google Analytics loaded.");
+			import.meta.env.PROD &&
+				<script is:inline>
+					function loadGtm() {
+						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','GTM-NSKM8LKT');
+						console.log("Google Tag Manager loaded.");
 					}
 
 					if (localStorage.getItem("cookie_consent") === "true") {
-						loadGa();
+						loadGtm();
 					} else {
-						window.addEventListener("consent-given", loadGa, { once: true });
+						window.addEventListener("consent-given", loadGtm, { once: true });
 					}
 				</script>
-			)
 		}
 	</head>
 	<body class="bg-white">
