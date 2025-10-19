@@ -119,6 +119,8 @@ export const ui = {
 		"footer.copyright": "© {currentYear} SviluppoZen by Giuseppe",
 		"newsletter.submit_aria_label": "Send newsletter form button",
 		"cta.newsletter.title": "Subscribe to our newsletter!",
+		"seo.title.home": "SviluppoZen: Web Development Agency & App Development in Florence",
+		"seo.description.home": "Web development agency in Florence specializing in custom websites, web applications, and managed hosting. High-performance solutions for your business growth.",
 	},
 	it: {
 		or: "o",

@@ -1,7 +1,7 @@
 ---
 import type { AstroSeoProps } from "@astrolib/seo";
 import Articles from "@components/blog/Articles.astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import Layout from "../../layouts/layout.astro";
 
 const seo: AstroSeoProps = {
 	title: "SviluppoZen Blog: Insights on Web Development and SEO",
@@ -37,6 +37,6 @@ const seo: AstroSeoProps = {
 };
 ---
 
-<BaseLayout seo={seo}>
+<Layout title={seo.title} description={seo.description}>
 	<Articles />
-</BaseLayout>
+</Layout>

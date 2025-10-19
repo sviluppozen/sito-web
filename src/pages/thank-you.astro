@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Layout from "../layouts/layout.astro";
 import type { AstroSeoProps } from "@astrolib/seo";
 import ThankYou from "@components/infopages/ThankYou.astro";
 
@@ -8,9 +8,11 @@ const seo: AstroSeoProps = {
 	description:
 		"Thank you for reaching out to SviluppoZen! Your message has been successfully sent. We appreciate your interest and will respond promptly.",
 	canonical: "https://sviluppozen.it/thank-you/",
+	noindex: true,
+	nofollow: true,
 };
 ---
 
-<BaseLayout seo={seo}>
+<Layout title={seo.title} description={seo.description}>
 	<ThankYou />
-</BaseLayout>
+</Layout>
