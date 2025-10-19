@@ -1,5 +1,5 @@
 ---
-name: Giuseppe Rossi
+name: Giuseppe
 description: "Founder of SviluppoZen and a passionate web developer based in Florence, specializing in creating high-performance, custom digital solutions."
 ---
 

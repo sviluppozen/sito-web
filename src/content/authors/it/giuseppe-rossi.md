@@ -1,5 +1,5 @@
 ---
-name: Giuseppe Rossi
+name: Giuseppe
 description: "Fondatore di SviluppoZen e sviluppatore web appassionato con sede a Firenze, specializzato in soluzioni digitali custom ad alte prestazioni."
 ---
 
