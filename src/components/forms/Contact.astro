@@ -15,6 +15,10 @@ const translatePath = useTranslatedPath(lang);
 	<div class="mx-auto">
 		<Title class="pb-10 pt-20 uppercase" title={t("contact.title")} subtitle={t("contact.subtitle")} />
 		<form id="contact-form" class="mx-auto max-w-2xl pt-12 lg:pt-20">
+			<!-- Replace with your Access Key from Web3Forms -->
+			<input type="hidden" name="access_key" value="c4f0a648-f24b-4924-8dea-d27ea9c10314" />
+			<input type="hidden" name="subject" value="New Contact Form Submission from SviluppoZen" />
+			<input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 				<div class="form-field sm:col-span-2">
 					<label for="name" class="form-label">{t("contact.name")}*</label>
@@ -27,6 +31,16 @@ const translatePath = useTranslatedPath(lang);
 				<div class="form-field sm:col-span-2">
 					<label for="company" class="form-label">{t("contact.company")}</label>
 					<input type="text" name="company" id="company" autocomplete="organization" />
+				</div>
+				<div class="form-field sm:col-span-2">
+					<label for="service" class="form-label">{t("contact.service")}</label>
+					<select name="service" id="service">
+						<option value="websites">{t("contact.service.option.websites")}</option>
+						<option value="apps">{t("contact.service.option.apps")}</option>
+						<option value="uiux">{t("contact.service.option.uiux")}</option>
+						<option value="seo">{t("contact.service.option.seo")}</option>
+						<option value="hosting">{t("contact.service.option.hosting")}</option>
+					</select>
 				</div>
 				<div class="form-field sm:col-span-2">
 					<label for="message" class="form-label">{t("contact.message")}*</label>
@@ -52,31 +66,43 @@ const translatePath = useTranslatedPath(lang);
 	</div>
 </section>
 
-<script define:vars={{ thanksPath: translatePath("/thanks") }}>
+<script define:vars={{ thanksPath: translatePath("/thanks") }} is:inline>
 	const form = document.getElementById("contact-form");
+	const submitButton = form.querySelector("button[type='submit']");
 
 	async function handleSubmit(event) {
 		event.preventDefault();
 		const formData = new FormData(event.target);
+		const object = Object.fromEntries(formData.entries());
+		const json = JSON.stringify(object);
+		const originalButtonText = submitButton.textContent;
+
+		submitButton.disabled = true;
+		submitButton.textContent = "Sending...";
 
 		try {
-			const response = await fetch("https://formspree.io/f/xwprznbe", {
+			const response = await fetch("https://api.web3forms.com/submit", {
 				method: "POST",
-				body: formData,
 				headers: {
+					"Content-Type": "application/json",
 					Accept: "application/json",
 				},
+				body: json,
 			});
 
-			if (response.ok) {
-				form.reset();
+			const result = await response.json();
+			if (result.success) {
 				window.location.href = thanksPath;
 			} else {
-				alert("There was an error sending your message. Please try again.");
+				console.error("Submission failed:", result);
+				alert("Failed to send message. Please try again.");
 			}
 		} catch (error) {
 			console.error("Form submission error:", error);
-			alert("A network error occurred. Please try again.");
+			alert("An error occurred. Please try again.");
+		} finally {
+			submitButton.disabled = false;
+			submitButton.textContent = originalButtonText;
 		}
 	}
 
@@ -115,7 +141,8 @@ const translatePath = useTranslatedPath(lang);
 	}
 
 	input,
-	textarea {
+	textarea,
+	select {
 		@apply pointer-events-auto relative m-0 w-full cursor-text rounded-lg border-0 bg-slate-200 px-5 py-2 text-xl font-normal not-italic outline-none placeholder:text-gray-400 focus:ring-slate-500;
 	}
 </style>
