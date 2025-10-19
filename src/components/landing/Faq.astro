@@ -31,7 +31,11 @@ const faqs = [
 ];
 ---
 
+<<<<<<< HEAD
 <section id="faq" class:list={["section faq-section relative bg-black text-white", className]}>
+=======
+<section id="faq" class:list={["section faq-section relative bg-zinc-900 text-white", className]}>
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 	<div class="wrapper col-span-12 flex min-h-screen w-full flex-col py-32 md:flex-row">
 		<div class="title-container top-0 pt-10 md:sticky md:h-[30rem]">
 			<h2 class="font-display text-5xl md:text-6xl lg:text-8xl">FAQ</h2>
@@ -229,6 +233,7 @@ const faqs = [
 				},
 				">-=1.5",
 			);
+<<<<<<< HEAD
 
 		// FAQ Accordion Animation
 		const detailsElements = gsap.utils.toArray<HTMLElement>(".faq-list details");
@@ -271,6 +276,8 @@ const faqs = [
 				}
 			});
 		});
+=======
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 	}
 
 	document.removeEventListener("DOMContentLoaded", init); // astro:page-load

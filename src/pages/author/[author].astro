@@ -1,10 +1,15 @@
 ---
+<<<<<<< HEAD
 import { getCollection, getEntry } from "astro:content";
+=======
+import { getCollection } from "astro:content";
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 import type { AstroSeoProps } from "@astrolib/seo";
 import Author from "@components/blog/Author.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
+<<<<<<< HEAD
 	const authors = await getCollection("authors", ({ slug }) => !slug.startsWith('en/'));
 	return authors.map((author) => ({
 		params: { author: author.slug },
@@ -23,6 +28,19 @@ const seo: AstroSeoProps = {
 	description: author.data.description,
 	canonical: `https://sviluppozen.it/author/${authorSlug}/`,
 };
+=======
+	const authors = await getCollection("authors");
+
+	return authors
+		.map((entry) => {
+			const [lang, ...slug] = entry.slug.split("/");
+			return { params: { lang, author: slug.join("/") || undefined }, props: entry };
+		})
+		.filter((entry) => entry.params.lang === "en");
+}
+
+const author = Astro.props;
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 
 const seo: AstroSeoProps = {
 	title: author.data.name,

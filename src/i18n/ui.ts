@@ -3,7 +3,11 @@ export const languages = {
 	it: "Italiano",
 };
 
+<<<<<<< HEAD
 export const defaultLang = "it";
+=======
+export const defaultLang = "en";
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 
 export const ui = {
 	en: {
@@ -89,9 +93,12 @@ export const ui = {
 		"footer.newsletter": "Subscribe to",
 		"footer.newsletter2": "our newsletter",
 		"footer.yourmail": "Your email",
+<<<<<<< HEAD
 		"footer.tags": "Tags",
 		"footer.social": "Social & Info",
 		"footer.copyright": "© {{year}} SviluppoZen by Giuseppe Rossi",
+=======
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 	},
 	it: {
 		or: "o",
@@ -176,12 +183,15 @@ export const ui = {
 		"footer.newsletter": "Iscriviti alla",
 		"footer.newsletter2": "newsletter",
 		"footer.yourmail": "La tua email",
+<<<<<<< HEAD
 		"footer.nav": "Navigazione",
 		"footer.home": "Home",
 		"footer.blog": "Blog",
 		"footer.tags": "Tags",
 		"footer.social": "Social & Info",
 		"footer.copyright": "© {{year}} SviluppoZen di Giuseppe Rossi",
+=======
+>>>>>>> 3e07bf513c4846344fd4ca9e414519c7d67de380
 	},
 } as const;
 
