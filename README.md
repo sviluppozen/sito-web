@@ -43,4 +43,4 @@ To preview the production build locally, run:
 - [x] Blog
 
 ---
-<p align="center">© 2024 SviluppoZen by Giuseppe Rossi</p>
+<p align="center">© 2024 SviluppoZen by Giuseppe</p>
