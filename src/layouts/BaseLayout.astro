@@ -78,26 +78,20 @@ function cursorFollowerActive() {
 		<BaseHead />
 		<AstroSeo {...seo} />{
 			import.meta.env.PROD &&
-				<script is:inline define:vars={{ GA_TRACKING_ID: "G-VNE9FR78ML" }}>
-					function loadGtag() {
-						const script = document.createElement("script");
-						script.async = true;
-						script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
-						document.head.appendChild(script);
-
-						window.dataLayer = window.dataLayer || [];
-						function gtag() {
-							dataLayer.push(arguments);
-						}
-						gtag("js", new Date());
-						gtag("config", GA_TRACKING_ID);
-						console.log("Google Analytics (gtag.js) loaded.");
+				<script is:inline>
+					function loadGtm() {
+						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','GTM-NSKM8LKT');
+						console.log("Google Tag Manager loaded.");
 					}
 
 					if (localStorage.getItem("cookie_consent") === "true") {
-						loadGtag();
+						loadGtm();
 					} else {
-						window.addEventListener("consent-given", loadGtag, { once: true });
+						window.addEventListener("consent-given", loadGtm, { once: true });
 					}
 				</script>
 		}
